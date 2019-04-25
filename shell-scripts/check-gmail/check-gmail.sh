@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #
 # requires 'recode' (sudo apt install recode)
@@ -10,7 +10,7 @@ URL="https://mail.google.com/mail/feed/atom/unread"
 BASEDIR="$(dirname $0)"
 
 
-checkmail() {
+checkgmail() {
     MSG="$(curl -sSfku $1:$2 $URL |  grep -oPm1 "(?<=<title>)[^<]+" | sed '1d;s/^/\&bull; /')"
     if [[ ! -z "${MSG}" ]]; then
         COUNT="$(echo "${MSG}" | wc -l)"
@@ -23,7 +23,8 @@ checkmail() {
     fi
 }
 
-checkmail "gmail1" "password1"
-checkmail "gmail2" "password2"
+# Multiple accounts...
+checkgmail "gmail1" "password1"
+checkgmail "gmail2" "password2"
 
 exit 0
