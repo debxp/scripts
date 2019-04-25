@@ -1,14 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-script_path="$HOME/scripts"
-script_file="$script_path/$1"
+# Your favorite editor...
 script_editor="vim"
+# Default destination of your scripts...
+script_path="$HOME/scripts"
 
-if [[ -f $script_file ]]; then
-    eval $script_editor $script_file
-else
-    echo '#!/usr/bin/env bash' > $script_file
-    chmod +x $script_file
-    eval $script_editor $script_file
+# Script file name...
+script_file="$script_path/$1"
+
+if [[ ! -f $script_file ]]; then
+    echo -e "#!/usr/bin/env bash\n\n" > $script_file
+    chmod u+x $script_file
 fi
 
+eval $script_editor $script_file
