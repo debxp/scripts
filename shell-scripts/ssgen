@@ -22,7 +22,7 @@ if [[ ! -f $script_file ]]; then
     chmod +x $script_file
 fi
 
-# open script in editor
+# open script with editor
 
 eval $script_editor $script_file
 
