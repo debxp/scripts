@@ -14,7 +14,7 @@ manual="$(man -k . | dmenu -p $prompt -fn "$font" $colors -l $lines | awk '{prin
 
 # open selected manual with terminal
 if [[ ! -z "$manual" ]]; then
-    eval "$($terminal -T "mansearch-dmenu" -e "man $manual")"
+    eval "$($terminal -T "Mansearch - Manual Viewer" -e "man $manual")"
 fi
 
 exit 0
