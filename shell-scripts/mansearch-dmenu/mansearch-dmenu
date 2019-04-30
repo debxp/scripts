@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# terminal to open manual
+terminal="xfce4-terminal"
+
+# dmenu theming
+prompt="man: "
+lines="25"
+font="Monaco-11"
+colors="-nb #2C323E -nf #9899a0 -sb #81A1C1 -sf #E5E9F0"
+
+# list all manuals
+manual="$(man -k . | dmenu -p $prompt -fn "$font" $colors -l $lines | awk '{print $1}')"
+
+# open selected manual with terminal
+if [[ ! -z "$manual" ]]; then
+    eval "$($terminal -T "mansearch-dmenu" -e "man $manual")"
+fi
+
+exit 0
+
+
